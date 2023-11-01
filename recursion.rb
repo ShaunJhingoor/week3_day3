@@ -15,8 +15,6 @@ def exp1(b,n)
     exp1(b,n/2) * exp1(b,n/2) if n.even? 
     b * exp1(b,(n- 1)/2) * exp1(b,(n - 1)/2) if n.odd?
 end
-p exp1(3,5)
-p exp1(3,11)
 
 class Array
     def deep_dup
@@ -34,20 +32,41 @@ class Array
 
 end
 
-array = [[1,2], 3,[4]]
-
-copy = array.deep_dup 
-p copy[0].object_id
-p array[0].object_id
-
-
 def fibonacci(n)
     return [0,1].take(n) if n <=2
     previous = fibonacci(n-1)
     previous << previous[-1] + previous[-2]
 end
 
-p fibonacci(5)
+def bsearch(arr,target)
+    count = mid_index(arr)
+    return nil if !arr.include?(target)
+    return arr.index(target) if arr[mid_index(arr)] == target
+    
+    count += 1
+    return count if arr.length == 1
+    if target > mid_index(arr)
+        arr.select!{ |ele| ele >= arr[mid_index(arr)]}
+        bsearch(arr,target)
+        
+    else
+        
+       arr.select!{|ele| ele <= arr[mid_index(arr)]}
+        bsearch(arr,target)
+    end
+    
+    return counter
+end
+
+def mid_index(arr)
+    if arr.length.even? 
+        return (arr.length/2) - 1
+    else 
+        return arr.length/2
+    end
+end
+p bsearch([1, 2, 3], 3) # => 0
+p bsearch([2, 4, 6, 8, 10], 6) # => 2
 
 
 
