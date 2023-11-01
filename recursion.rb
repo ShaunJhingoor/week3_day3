@@ -41,5 +41,16 @@ p copy[0].object_id
 p array[0].object_id
 
 
+def fibonacci(n)
+    return [0,1].take(n) if n <=2
+    previous = fibonacci(n-1)
+    previous << previous[-1] + previous[-2]
+end
+
+p fibonacci(5)
+
+
+
+
 
 
