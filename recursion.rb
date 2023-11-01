@@ -20,18 +20,25 @@ p exp1(3,11)
 
 class Array
     def deep_dup
-
-    end
-
-    def is_a?(index)
-        self[index].class == Array
+        arr=[]
+        self.each_with_index do |el,i|
+           if self[i].is_a?(Array)
+            
+               arr.push(self[i].deep_dup)
+           else
+                arr<<self[i]
+           end
+        end
+        return arr
     end
 
 end
 
-array = [[1,2], 3,4]
+array = [[1,2], 3,[4]]
 
-p array.is_a?(0)
+copy = array.deep_dup 
+p copy[0].object_id
+p array[0].object_id
 
 
 
