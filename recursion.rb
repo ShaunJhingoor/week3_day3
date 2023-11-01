@@ -18,3 +18,21 @@ end
 p exp1(3,5)
 p exp1(3,11)
 
+class Array
+    def deep_dup
+
+    end
+
+    def is_a?(index)
+        self[index].class == Array
+    end
+
+end
+
+array = [[1,2], 3,4]
+
+p array.is_a?(0)
+
+
+
+
